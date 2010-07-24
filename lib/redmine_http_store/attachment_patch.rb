@@ -19,7 +19,7 @@ module RedmineHttpStore
       def put_to_http_store
         if @temp_file && @temp_file.size > 0
           begin
-            self.disk_filename = RedmineHttpStore::Connection.put(filename, @temp_file.read)
+            self.disk_filename = RedmineHttpStore::Connection.put(filename, @temp_file.read, self.content_type)
             md5 = Digest::MD5.new
             self.digest = md5.hexdigest
           rescue Exception => e

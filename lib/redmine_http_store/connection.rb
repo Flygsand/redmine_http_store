@@ -20,11 +20,12 @@ module RedmineHttpStore
       "http://#{@@host}#{port}"
     end
     
-    def self.put(filename, data)
+    def self.put(filename, data, content_type = nil)
       raise ArgumentError('Filename must not contain a "/"') if filename.include?('/')
 
+      header = {'Content-Type' => content_type} if content_type
       response = @@conn.start do |http|
-        http.send_request('PUT', "/#{filename}", data)
+        http.send_request('PUT', "/#{filename}", data, header)
       end
 
       act_on_response(response)
