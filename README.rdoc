@@ -1,0 +1,17 @@
+= Redmine HTTP store plugin
+
+== Description
+This Redmine[http://www.redmine.org] plugin stores attached files to a
+HTTP file store such as http://github.com/mtah/appengine-filestore
+instead of the local filesystem.
+
+== Installation
+1. <tt>cd</tt> into the Redmine root directory
+2. Run <tt>ruby script/plugin install git://github.com/mtah/redmine_http_store.git</tt>
+3. Copy <tt>vendor/plugins/redmine_http_store/config/http_store.yml.example</tt> to <tt>config/http_store.yml</tt>
+4. Edit <tt>config/http_store.yml</tt>
+5. Restart the application server if necessary
+
+== Inspiration
+* Christopher Dell's redmine_s3[http://github.com/tigrish/redmine_s3] plugin 
+* The lack of a persistent, writable filesystem on Heroku[http://heroku.com]
