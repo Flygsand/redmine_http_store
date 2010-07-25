@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 require 'redmine'
 require 'dispatcher'
- 
+
+config.gem 'ruby-hmac', :lib => 'hmac-sha1'
+config.gem 'uuid'
+
 Dispatcher.to_prepare :redmine_http_store do
   require_dependency 'attachment'
   unless Attachment.included_modules.include? RedmineHttpStore::AttachmentPatch
@@ -15,7 +18,7 @@ Dispatcher.to_prepare :redmine_http_store do
     AttachmentsController.send(:include, RedmineHttpStore::AttachmentsControllerPatch)
   end
 
-  RedmineHttpStore::Connection.initialize
+  RedmineHttpStore::Connection.initialize RedmineHttpStore::Client.new
 end
 
 Redmine::Plugin.register :redmine_http_store do

@@ -1,7 +1,9 @@
 production:
   host: localhost
   port: 8080
+  shared_secret: 'shared secret'
 
 development:
   host: localhost
   port: 8080
+  shared_secret: 'shared secret'
